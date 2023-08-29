@@ -37,7 +37,7 @@ function createNewTodoItemElement(task, index) {
 
   const completeButtonElement = document.createElement("input");
   completeButtonElement.type = "button";
-  completeButtonElement.value = "Completed";
+  completeButtonElement.value = "Complete";
   completeButtonElement.onclick = function () {
     toggleComplete(index);
   };
