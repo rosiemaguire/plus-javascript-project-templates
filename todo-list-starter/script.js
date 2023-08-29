@@ -1,5 +1,6 @@
 const toDoList = ["Update resume", "Binge junk food", "have a nap"];
 const toDoTaskStatus = [false,true,false]
+
 updateTodoList();
 
 function addTask() {
@@ -41,6 +42,12 @@ function createNewTodoItemElement(task, index) {
   completeButtonElement.onclick = function () {
     toggleComplete(index);
   };
+  const addDueDateButtonElement = document.createElement("input");
+  addDueDateButtonElement.type = "button";
+  addDueDateButtonElement.value = "Add due date";
+  addDueDateButtonElement.onclick = function () {
+    dueDate(addDueDateButtonElement);
+  };
 
   if(toDoTaskStatus[index]) {
     newToDoTaskTextElement.classList.add("complete");
@@ -48,6 +55,7 @@ function createNewTodoItemElement(task, index) {
   }
 
   newTodoTaskElement.appendChild(completeButtonElement);
+  newTodoTaskElement.appendChild(addDueDateButtonElement);
   return newTodoTaskElement;
 }
 
@@ -56,6 +64,16 @@ function toggleComplete(index) {
   updateTodoList();
 }
 
+function dueDate(addDueDateButtonElement){
+  addDueDateButtonElement.type = "date";
+  addDueDateButtonElement.value = (new Date()).toISOString().substring(0 , 10);
+  // const removeDueDate = document.createElement("input");
+  // removeDueDate.type = "button";
+  // removeDueDate.value = "Remove Due Date";
+  // removeDueDate.onclick = function() {
+  //   addDueDateButtonElement.appendChild(removeDueDate);
+  // }
+}
 
 function keypress(inputId, buttonId) {
   const newItem = document.getElementById(inputId);
@@ -69,3 +87,6 @@ function keypress(inputId, buttonId) {
 }
 
 keypress("new-task-text","new-task-button");
+document.addEventListener("click",function(event){
+  console.log(event)
+})
